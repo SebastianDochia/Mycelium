@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManagerComponent } from './manager/manager.component';
 import { WorkingEnvComponent } from './working-env/working-env.component';
 import { WorkspaceComponent } from './manager/workspace/workspace.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WorkspaceComponent } from './manager/workspace/workspace.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,17 +10,20 @@ dotenv.config({ path: './config/config.env' });
 // Connect to database
 connectDB();
 
-//Route files
+// Route files
 const workspaces = require('./routes/workspaces');
 
 const app = express();
 
-//Dev logging middleware
+// Body parser
+app.use(express.json());
+
+// Dev logging middleware
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-//Mount routers
+// Mount routers
 app.use('/api/v1/workspaces', workspaces);
 
 const PORT = process.env.PORT || 5000;

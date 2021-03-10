@@ -1,19 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkspaceService } from './workspace/workspace.service';
+import { Workspace } from '../shared/workspace';
+
+import { ManagerWorkspaceService } from './manager-workspace.service';
 
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.css'],
-  providers: [WorkspaceService]
 })
 export class ManagerComponent implements OnInit {
-  workspaces: string[];
+  workspaces: Workspace[];
 
-  constructor(private workspaceService: WorkspaceService) { }
+  constructor(private workspaceService: ManagerWorkspaceService) { }
 
   ngOnInit(): void {
-    this.workspaces = this.workspaceService.getWorkspaces();
+    this.getWorkspaces();
+  }
+
+  getWorkspaces(): void {
+    this.workspaceService.getWorkspaces().subscribe(workspaces => this.workspaces = workspaces);
+  }
+
+  showWorkspaces(){
+    this.getWorkspaces();
+    console.log(this.workspaces);
   }
 
 }
