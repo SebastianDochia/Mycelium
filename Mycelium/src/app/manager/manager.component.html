@@ -1,6 +1,15 @@
-<h1>Toolbar</h1>
-<div>
-    <h1>Workspaces List</h1>
-    <app-workspace *ngFor="let workspace of workspaces" [workspaceName]="workspace.name"></app-workspace>
+<div class="mat-wrap-background" style="height: 100%;">
+    <mat-toolbar color="primary">
+        <span>MYCELIUM</span>
+    </mat-toolbar>
+    <div class="workspace mat-app-background">
+        <div class="workspaces-list">
+            <h1>Workspaces</h1>
+            <hr color="primary">
+            <app-workspace *ngFor="let workspace of workspaces" [workspaceName]="workspace.name"></app-workspace>
+        </div>
+        <div class="statistics">
+            <app-statistics></app-statistics>
+        </div>
+    </div>
 </div>
-<h1>Statistics</h1>

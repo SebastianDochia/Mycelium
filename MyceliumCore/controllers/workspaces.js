@@ -44,7 +44,6 @@ exports.createWorkspace = async (req, res, next) => {
     } catch (error) {
         res.status(400).json({ success: false });
     }
-
 }
 
 // @desc    Update workspace

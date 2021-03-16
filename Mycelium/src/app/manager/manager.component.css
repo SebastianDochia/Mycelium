@@ -1,0 +1,24 @@
+.workspace {
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.workspaces-list {
+    flex: 10%;
+    margin-right: 5px;
+    background-color: #2A323C;
+    height: 100%;
+}
+
+.workspaces-list h1 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin: 0;
+}
+
+.statistics {
+    flex: 90%;
+    padding: 20px;
+}
