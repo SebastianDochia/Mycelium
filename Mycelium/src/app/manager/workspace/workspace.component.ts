@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Workspace } from 'src/app/shared/workspace';
 
 @Component({
   selector: 'app-workspace',
@@ -6,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./workspace.component.css']
 })
 export class WorkspaceComponent implements OnInit {
-  @Input() workspaceName: string;
+  @Input() workspaceElement: Workspace;
+  @Input() index: number;
 
   constructor() { }
 

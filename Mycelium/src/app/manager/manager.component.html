@@ -6,10 +6,10 @@
         <div class="workspaces-list">
             <h1>Workspaces</h1>
             <hr color="primary">
-            <app-workspace *ngFor="let workspace of workspaces" [workspaceName]="workspace.name"></app-workspace>
+            <app-workspace *ngFor="let workspace of workspaces" [workspaceElement]="workspace" [workspaceId]="workspace.id"></app-workspace>
         </div>
         <div class="statistics">
-            <app-statistics></app-statistics>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

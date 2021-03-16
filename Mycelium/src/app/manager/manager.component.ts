@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Workspace } from '../shared/workspace';
 
-import { ManagerWorkspaceService } from './manager-workspace.service';
+import { ManagerWorkspaceHandlerService } from './manager-workspace-handler.service';
+import { ManagerWorkspaceRequesterService } from './manager-workspace-requester.service';
+
+
 
 @Component({
   selector: 'app-manager',
@@ -11,19 +14,15 @@ import { ManagerWorkspaceService } from './manager-workspace.service';
 export class ManagerComponent implements OnInit {
   workspaces: Workspace[];
 
-  constructor(private workspaceService: ManagerWorkspaceService) { }
+  constructor(private workspaceRequesterService: ManagerWorkspaceRequesterService, private workspaceHandlerService: ManagerWorkspaceHandlerService) { }
 
   ngOnInit(): void {
     this.getWorkspaces();
   }
 
+
   getWorkspaces(): void {
-    this.workspaceService.getWorkspaces().subscribe(workspaces => this.workspaces = workspaces);
+    this.workspaceRequesterService.getWorkspaces().subscribe(workspaces => this.workspaces = workspaces);
+    
   }
-
-  showWorkspaces(){
-    this.getWorkspaces();
-    console.log(this.workspaces);
-  }
-
 }

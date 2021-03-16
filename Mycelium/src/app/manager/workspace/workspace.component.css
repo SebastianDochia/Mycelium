@@ -1,0 +1,25 @@
+a:link, a:visited{
+    box-sizing: border-box;
+    background-color: #25303D;
+    margin-bottom: 5px;
+    padding: 15px;
+    text-decoration: none;
+    display: inline-block;
+    border-top: 0px;
+    border-bottom: 2px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: #62CF3A;
+    width: 100%;
+    color: #F5F5F5;
+}
+
+h4 {
+    margin: 0;
+    margin-left: 5px;
+}
+
+a:hover, a:active{
+    background-color: #070A0D;
+}

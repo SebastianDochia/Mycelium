@@ -1,7 +1,7 @@
 export interface Workspace {
     members: string[],
     isStarted: boolean,
-    id: number,
+    _id: string,
     name: string,
     description: string,
     owner: string
