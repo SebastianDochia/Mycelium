@@ -22,3 +22,9 @@
     flex: 90%;
     padding: 20px;
 }
+
+a {
+    cursor: pointer; 
+    text-decoration: none; 
+    color: #070A0D;
+}
