@@ -1,8 +1,9 @@
-<a style="cursor: pointer;" [routerLink]="[workspaceElement.name]" routerLinkActive="active">
-    <div class="text-wrapper">
+<a style="cursor: pointer;" [routerLink]="[workspaceElement.name]" routerLinkActive="active-link">
+    <div class="title-wrapper">
         <h4>{{ workspaceElement.name }}</h4>
+        <div [className]="workspaceElement.isStarted ? 'circle-green' : 'circle-red'"></div>
     </div>
-    <div>
-
+    <div class="description-wrapper">
+        <p>Year {{ workspaceElement.year }} Series: {{ workspaceElement.series }} Group: {{ workspaceElement.group }}</p>
     </div>
 </a>

@@ -1,4 +1,4 @@
-a:link, a:visited{
+a, a:link {
     box-sizing: border-box;
     background-color: #25303D;
     margin-bottom: 5px;
@@ -15,11 +15,41 @@ a:link, a:visited{
     color: #F5F5F5;
 }
 
+a:hover, a:active {
+    background-color: #070A0D;
+}
+
+.active-link {
+    background-color: #070A0D;
+}
+
 h4 {
     margin: 0;
     margin-left: 5px;
 }
 
-a:hover, a:active{
-    background-color: #070A0D;
+.title-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.description-wrapper {
+    margin-left: 5px;
+}
+
+.circle-red {
+    height: 15px;
+    width: 15px;
+    background-color: #EF192E;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.circle-green {
+    height: 15px;
+    width: 15px;
+    background-color: #62CF3A;
+    border-radius: 50%;
+    display: inline-block;
+
 }

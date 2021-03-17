@@ -4,5 +4,8 @@ export interface Workspace {
     _id: string,
     name: string,
     description: string,
-    owner: string
+    owner: string,
+    year: number,
+    series: string,
+    group: number
 }
