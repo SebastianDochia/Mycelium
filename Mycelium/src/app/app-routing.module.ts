@@ -4,13 +4,15 @@ import { ManagerWorkspaceResolverService } from "./manager/manager-workspace-res
 import { ManagerComponent } from "./manager/manager.component";
 import { StatisticsComponent } from "./manager/statistics/statistics.component";
 import { WelcomeComponent } from "./manager/welcome/welcome.component";
+import { WorkingEnvComponent } from "./working-env/working-env.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/manager', pathMatch: 'full' },
     { path: 'manager', component: ManagerComponent, children: [
         { path: '', component: WelcomeComponent },
         { path: ':id', component: StatisticsComponent, resolve: [ManagerWorkspaceResolverService] }
-    ]}
+    ]},
+    { path: 'working-env', component: WorkingEnvComponent }
 ];
 
 @NgModule({

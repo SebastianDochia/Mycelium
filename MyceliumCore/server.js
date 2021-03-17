@@ -12,6 +12,7 @@ connectDB();
 
 // Route files
 const workspaces = require('./routes/workspaces');
+const workingEnv = require('./routes/working-env');
 
 const app = express();
 
@@ -25,6 +26,7 @@ if(process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/workspaces', workspaces);
+app.use('/api/v1/working-env', workingEnv);
 
 const PORT = process.env.PORT || 5000;
 

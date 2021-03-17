@@ -1,1 +1,5 @@
-<p>working-env works!</p>
+<div class="working-env">
+    <textarea style="resize: none; height: 600px;" #codeBox></textarea>
+    <button type="submit" (click)="onCompile(codeBox.value)">Compile</button>
+    <p>{{ output.getValue() }}</p>
+</div>
