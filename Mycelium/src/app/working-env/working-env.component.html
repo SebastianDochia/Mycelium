@@ -1,5 +1,5 @@
 <div class="working-env">
-    <textarea style="resize: none; height: 600px;" #codeBox></textarea>
+    <textarea style="resize: none; height: 600px;" #codeBox>{"code": "class HelloWorld {\r\n    public static void main(String[] args) {\r\n        System.out.println(\"Hello, World!\"); \r\n    }\r\n}"}</textarea>
     <button type="submit" (click)="onCompile(codeBox.value)">Compile</button>
     <p>{{ output.getValue() }}</p>
 </div>

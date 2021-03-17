@@ -13,9 +13,9 @@ import { WorkingEnv } from "../shared/workingEnv";
   styleUrls: ['./working-env.component.css']
 })
 export class WorkingEnvComponent implements OnInit {
-  id: string;
-  workingEnv: WorkingEnv;
   linkedWorkspace: string;
+  workingEnv: WorkingEnv;
+  id: string;
 
   private workingEnvURL = 'http://localhost:5000/api/v1/working-env'
   
@@ -28,15 +28,14 @@ export class WorkingEnvComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.fragment;
-    this.http.get(`${this.workingEnvURL}/${this.id}`).pipe(map((result) => result['data']), tap((data) => console.log(data[0]))).subscribe(result => this.linkedWorkspace = result[0]._id);
+    this.linkedWorkspace = this.route.snapshot.fragment;
+    this.http.get(`${this.workingEnvURL}/${this.linkedWorkspace}`).pipe(map((result) => result['data']), tap((data) => console.log(data[0]))).subscribe(result => this.id = result[0]._id);
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
   }
 
   onCompile(code: string) {
     //console.log(JSON.parse(code));
-    console.log(`${this.workingEnvURL}/${this.linkedWorkspace}`);
-    this.http.put(`${this.workingEnvURL}/${this.linkedWorkspace}`, JSON.parse(code)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.workingEnv = response);
+    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(code)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.workingEnv = response);
   }
 
 }
