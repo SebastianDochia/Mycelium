@@ -42,14 +42,15 @@ exports.updateWorkingEnv = async (req, res, next) => {
             useFindAndModify: false
         });
         
-        let compiler = new Compiler();
-        const compilationResult = compiler.compileAndRun(req.body.code);
+        //let compiler = new Compiler();
+        const compilationResult = await new Compiler().compileAndRun(Buffer.from(req.body.code, 'base64').toString());
+        console.log(compilationResult);
     
         if(!workingEnv) {
             return res.status(400).json({ success: false });
         }
     
-        res.status(200).json({ success: true, data: workingEnv});
+        res.status(200).json({ success: true, data: compilationResult});
     } catch (error) {
         console.log(error);
         res.status(400).json({ success: false });

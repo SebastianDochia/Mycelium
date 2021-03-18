@@ -1,17 +1,34 @@
 const fs = require('fs');
+const { exec } = require("child_process");
 
 class Compiler {
-    compileAndRun = (input) => {
-        return new Promise(() => {
-            fs.writeFile("tmp/tmp.txt", input, (err) => {
-                if(err) {
+    compileAndRun = async (input) => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile("tmp/tmp.java", input, (err) => {
+                if (err) {
                     return console.log(err);
                 }
+                exec(`cd tmp & javac tmp.java & java HelloWorld`, (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(`error: ${error.message}`);
+                        resolve(error);
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        resolve(stderr);
+                    }
+                    resolve(stdout);
+                });
+                
+
             });
+
             
         });
-    
+
     }
+
+
 }
 
 module.exports = Compiler;

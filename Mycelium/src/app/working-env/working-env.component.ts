@@ -14,16 +14,15 @@ import { WorkingEnv } from "../shared/workingEnv";
 })
 export class WorkingEnvComponent implements OnInit {
   linkedWorkspace: string;
-  workingEnv: WorkingEnv;
   id: string;
 
-  private workingEnvURL = 'http://localhost:5000/api/v1/working-env'
+  private workingEnvURL = 'http://localhost:5000/api/v1/working-env';
   
-  output = new BehaviorSubject<String>("Awaiting Input");
+  output: string;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+  };
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -34,9 +33,13 @@ export class WorkingEnvComponent implements OnInit {
   }
 
   onCompile(code: string) {
-    //console.log(JSON.parse(code));
-    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(code)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.workingEnv = response);
+    console.log(`{"code": "${btoa(code)}"}`);
+
+    JSON.parse(`{"code": "${btoa(code)}"}`)
+    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(code)}"}`)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
   }
+
+  
 
 }
 
