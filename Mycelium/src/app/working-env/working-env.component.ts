@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BehaviorSubject, Subject } from "rxjs";
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
-import { WorkingEnv } from "../shared/workingEnv";
 
 @Component({
   selector: 'app-working-env',
@@ -17,12 +16,24 @@ export class WorkingEnvComponent implements OnInit {
   id: string;
 
   private workingEnvURL = 'http://localhost:5000/api/v1/working-env';
-  
+
   output: string;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
+  editorRef: MonacoEditorModule;
+  editorOptions = { theme: 'vs-dark', language: 'java' };
+  code: string = `    class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!"); 
+    }
+}`;
+
+  async onInitEditor(editor) {
+    this.editorRef = editor;
+  }
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -32,14 +43,14 @@ export class WorkingEnvComponent implements OnInit {
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
   }
 
-  onCompile(code: string) {
-    console.log(`{"code": "${btoa(code)}"}`);
+  onCompile() {
+    console.log(`{"code": "${btoa(this.code)}"}`);
 
-    JSON.parse(`{"code": "${btoa(code)}"}`)
-    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(code)}"}`)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
+    JSON.parse(`{"code": "${btoa(this.code)}"}`)
+    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
   }
 
-  
+
 
 }
 

@@ -1,11 +1,13 @@
 <div class="working-env">
-    <textarea style="resize: none; height: 600px;" #codeBox>
+    <!-- <textarea style="resize: none; height: 600px;" #codeBox>
     class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello, World!"); 
         }
     }
     </textarea>
-    <button type="submit" (click)="onCompile(codeBox.value)">Compile</button>
+    <button type="submit" (click)="onCompile(codeBox.value)">Compile</button> -->
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" style="width: 100%; height: 100%;" (onInit)="onInitEditor($event)"></ngx-monaco-editor>
+    <button type="submit" (click)="onCompile()">Compile</button>
     <p>{{ output }}</p>
 </div>

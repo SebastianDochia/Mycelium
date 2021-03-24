@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatisticsComponent } from './manager/statistics/statistics.component';
 
 import { DemoMaterialModule } from './material.module';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { DemoMaterialModule } from './material.module';
     BrowserAnimationsModule,
     HttpClientModule,
     DemoMaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
