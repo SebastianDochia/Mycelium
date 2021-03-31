@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { WorkingEnvService } from './working-env.service';
 
 
 @Component({
@@ -25,22 +26,20 @@ export class WorkingEnvComponent implements OnInit {
 
   editorRef: MonacoEditorModule;
   editorOptions = { theme: 'vs-dark', language: 'java' };
-  code: string = `    class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
-    }
-}`;
+  code: string;
 
   async onInitEditor(editor) {
     this.editorRef = editor;
   }
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private workingEnvService: WorkingEnvService) { }
 
   ngOnInit(): void {
     this.linkedWorkspace = this.route.snapshot.fragment;
     this.http.get(`${this.workingEnvURL}/${this.linkedWorkspace}`).pipe(map((result) => result['data']), tap((data) => console.log(data[0]))).subscribe(result => this.id = result[0]._id);
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
+
+    this.workingEnvService.getCode().subscribe(code => this.code = code);
   }
 
   onCompile() {
