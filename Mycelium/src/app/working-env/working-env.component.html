@@ -1,13 +1,17 @@
-<div class="working-env">
-    <!-- <textarea style="resize: none; height: 600px;" #codeBox>
-    class HelloWorld {
-        public static void main(String[] args) {
-            System.out.println("Hello, World!"); 
-        }
-    }
-    </textarea>
-    <button type="submit" (click)="onCompile(codeBox.value)">Compile</button> -->
-    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" style="width: 100%; height: 100%;" (onInit)="onInitEditor($event)"></ngx-monaco-editor>
-    <button type="submit" (click)="onCompile()">Compile</button>
-    <p>{{ output }}</p>
+<div class="mat-wrap-background working-env">
+    <mat-toolbar color='primary' style="height: 40px;">
+        <p class="title">MYCELIUM</p>
+    </mat-toolbar>
+    <div class="working-medium">
+        <app-file-manager class="mat-app-background" style="height: 100%; width: 12%;"></app-file-manager>
+        <div style="width: 100%; height: 100%;">
+            <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" style="width: 100%; height: 92%;"
+                (onInit)="onInitEditor($event)"></ngx-monaco-editor>
+            <button class="btnCompile" type="submit" (click)="onCompile()">Compile & Run</button>
+            <p class="output">{{ output }}</p>
+        </div>
+        <app-user-list class="mat-app-background" style="height: 100%; width: 8%;"></app-user-list>
+    </div>
+
+    
 </div>

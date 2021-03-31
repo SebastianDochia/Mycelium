@@ -17,7 +17,7 @@ export class WorkingEnvComponent implements OnInit {
 
   private workingEnvURL = 'http://localhost:5000/api/v1/working-env';
 
-  output: string;
+  output: string = "Awaiting Input";
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

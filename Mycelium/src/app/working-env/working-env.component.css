@@ -1,5 +1,56 @@
 .working-env {
     display: flex;
     flex-direction: column;
-    height: 60%;
+    height: 100%;
+    background-color: black;
+}
+
+.title {
+    margin-top: 12px;
+    font-size: 25px;
+}
+
+.working-medium {
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+}
+
+.editor {
+    margin: 0;
+}
+
+.btnCompile {
+    background-color: #62CF3A;
+    color: #070A0D;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    line-height: 20px;
+    width: 200px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 8%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #62CF3A;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btnCompile:hover {
+    background-color: #070A0D;
+    color: #62CF3A;
+}
+
+.output {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    color: silver;
+    padding-left: 15px;
+    overflow: scroll;
 }

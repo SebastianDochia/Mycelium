@@ -13,6 +13,8 @@ import { StatisticsComponent } from './manager/statistics/statistics.component';
 
 import { DemoMaterialModule } from './material.module';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { FileManagerComponent } from './working-env/file-manager/file-manager.component';
+import { UserListComponent } from './working-env/user-list/user-list.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     WorkingEnvComponent,
     WorkspaceComponent,
     StatisticsComponent,
+    FileManagerComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
