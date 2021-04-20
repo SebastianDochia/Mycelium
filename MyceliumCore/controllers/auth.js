@@ -47,6 +47,8 @@ exports.login = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
 
+    // Create token
+    const token = user.getSignedJwtToken();
 
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, token });
 });
