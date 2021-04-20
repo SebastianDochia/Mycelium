@@ -1,5 +1,3 @@
-
-
 export interface Folder {
     name: string;
     childrenFolder?: Folder[];
