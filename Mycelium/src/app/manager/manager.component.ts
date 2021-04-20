@@ -5,7 +5,6 @@ import { ManagerWorkspaceHandlerService } from './manager-workspace-handler.serv
 import { ManagerWorkspaceRequesterService } from './manager-workspace-requester.service';
 
 
-
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',

@@ -10,8 +10,8 @@ exports.getWorkingEnvById = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: workingEnv });
     } catch (error) {
-        console.log(error);
-        res.status(400).json({ success: error });
+        //res.status(400).json({ success: error });
+        next(error);
     }
 }
 

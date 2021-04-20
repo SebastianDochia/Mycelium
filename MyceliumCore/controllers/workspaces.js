@@ -26,7 +26,8 @@ exports.getWorkspace = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: workspace });
     } catch (error) {
-        res.status(400).json({ success: false });
+        //res.status(400).json({ success: false });
+        next(error);
     }
 }
 
