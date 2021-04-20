@@ -1,10 +1,13 @@
-const WorkingEnv = require('../models/WorkingEnv');
+const ErrorResponse = require('../utils/errorResponse');
 const Compiler = require('../Compilation/Compiler');
+const asyncHandler = require('../middleware/async');
+const WorkingEnv = require('../models/WorkingEnv');
+
 
 // @desc    Get workingEnv by id
 // @route   GET /api/v1/workingEnv
 // @access  Private
-exports.getWorkingEnvById = async (req, res, next) => {
+exports.getWorkingEnv = async (req, res, next) => {
     try {
         const workingEnv = await WorkingEnv.find({linkedWorkspace : req.params.id});
 
