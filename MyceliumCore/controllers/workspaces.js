@@ -10,7 +10,7 @@ exports.getWorkspaces = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: workspaces });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(error);
     }
 }
 
@@ -21,13 +21,13 @@ exports.getWorkspace = async (req, res, next) => {
     try {
         const workspace = await Workspace.findById(req.params.id);
 
-        if(!workspace) {
+        if (!workspace) {
             return next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
         }
 
         res.status(200).json({ success: true, data: workspace });
     } catch (error) {
-        next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
+        next(error);
     }
 }
 
@@ -43,7 +43,7 @@ exports.createWorkspace = async (req, res, next) => {
             data: workspace
         });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(error);
     }
 }
 
@@ -57,14 +57,14 @@ exports.updateWorkspace = async (req, res, next) => {
             runValidators: true,
             useFindAndModify: false
         });
-    
-        if(!workspace) {
-            return res.status(400).json({ success: false });
+
+        if (!workspace) {
+            return next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
         }
-    
-        res.status(200).json({ success: true, data: workspace});
+
+        res.status(200).json({ success: true, data: workspace });
     } catch (error) {
-        return res.status(400).json({ success: false });
+        next(error);
     }
 }
 
@@ -74,13 +74,13 @@ exports.updateWorkspace = async (req, res, next) => {
 exports.deleteWorkspace = async (req, res, next) => {
     try {
         const workspace = await Workspace.findByIdAndDelete(req.params.id);
-    
-        if(!workspace) {
-            return res.status(400).json({ success: false });
+
+        if (!workspace) {
+            return next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
         }
-    
+
         res.status(200).json({ success: true, data: {} });
     } catch (error) {
-        return res.status(400).json({ success: false });
+        next(error);
     }
 }
