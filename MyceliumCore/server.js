@@ -14,6 +14,7 @@ connectDB();
 // Route files
 const workspaces = require('./routes/workspaces');
 const workingEnv = require('./routes/working-env');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -28,6 +29,7 @@ if(process.env.NODE_ENV === 'development') {
 // Mount routers
 app.use('/api/v1/workspaces', workspaces);
 app.use('/api/v1/working-env', workingEnv);
+app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 
