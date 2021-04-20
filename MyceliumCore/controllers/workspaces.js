@@ -1,3 +1,4 @@
+const ErrorResponse = require('../utils/errorResponse');
 const Workspace = require('../models/Workspace');
 
 // @desc    Get all workspaces
@@ -21,13 +22,12 @@ exports.getWorkspace = async (req, res, next) => {
         const workspace = await Workspace.findById(req.params.id);
 
         if(!workspace) {
-            return res.status(400).json({ success: false });
+            return next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
         }
 
         res.status(200).json({ success: true, data: workspace });
     } catch (error) {
-        //res.status(400).json({ success: false });
-        next(error);
+        next(new ErrorResponse(`Workspace not found with id ${req.params.id}`, 404));
     }
 }
 
