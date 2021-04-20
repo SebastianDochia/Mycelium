@@ -7,55 +7,45 @@ const WorkingEnv = require('../models/WorkingEnv');
 // @desc    Get workingEnv by id
 // @route   GET /api/v1/workingEnv
 // @access  Private
-exports.getWorkingEnv = async (req, res, next) => {
-    try {
-        const workingEnv = await WorkingEnv.find({linkedWorkspace : req.params.id});
+exports.getWorkingEnv = asyncHandler(async (req, res, next) => {
+    const workingEnv = await WorkingEnv.find({ linkedWorkspace: req.params.id });
 
-        res.status(200).json({ success: true, data: workingEnv });
-    } catch (error) {
-        //res.status(400).json({ success: error });
-        next(error);
+    if (!workspace) {
+        return next(new ErrorResponse(`Working Environment not found with id ${req.params.id}`, 404));
     }
-}
+
+    res.status(200).json({ success: true, data: workingEnv });
+});
 
 // @desc    Create new workingEnv
 // @route   POST /api/v1/working-env
 // @access  Private
-exports.createWorkingEnv = async (req, res, next) => {
-    try {
-        const workingEnv = await WorkingEnv.create(req.body);
+exports.createWorkingEnv = asyncHandler(async (req, res, next) => {
+    const workingEnv = await WorkingEnv.create(req.body);
 
-        res.status(201).json({
-            success: true,
-            data: workingEnv
-        });
-    } catch (error) {
-        res.status(400).json({ success: false });
-    }
-}
+    res.status(201).json({
+        success: true,
+        data: workingEnv
+    });
+});
 
 // @desc    Update workingEnv
 // @route   PUT /api/v1/working-env/:id
 // @access  Private
-exports.updateWorkingEnv = async (req, res, next) => {
-    try {
-        const workingEnv = await WorkingEnv.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true,
-            useFindAndModify: false
-        });
-        
-        //let compiler = new Compiler();
-        const compilationResult = await new Compiler().compileAndRun(Buffer.from(req.body.code, 'base64').toString());
-        console.log(compilationResult);
-    
-        if(!workingEnv) {
-            return res.status(400).json({ success: false });
-        }
-    
-        res.status(200).json({ success: true, data: compilationResult});
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ success: false });
+exports.updateWorkingEnv = asyncHandler(async (req, res, next) => {
+    const workingEnv = await WorkingEnv.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    });
+
+    //  Compile and run code
+    const compilationResult = await new Compiler().compileAndRun(Buffer.from(req.body.code, 'base64').toString());
+    console.log(compilationResult);
+
+    if (!workingEnv) {
+        return next(new ErrorResponse(`Working Environment not found with id ${req.params.id}`, 404));
     }
-}
+
+    res.status(200).json({ success: true, data: compilationResult });
+});
