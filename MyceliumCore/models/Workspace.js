@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const WorkspaceSchema = new mongoose.Schema({
     name: {
@@ -32,6 +33,12 @@ const WorkspaceSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
+});
+
+// Create bootcamp slug from name
+WorkspaceSchema.pre('save', function(next) {
+    this.slug = slugify(this.name, { lower: true });
+    next();
 });
 
 module.exports = mongoose.model('Workspace', WorkspaceSchema);
