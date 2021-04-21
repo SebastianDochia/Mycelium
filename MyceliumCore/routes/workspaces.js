@@ -3,8 +3,10 @@ const { getWorkspaces, getWorkspace, createWorkspace, updateWorkspace, deleteWor
 
 const router = express.Router();
 
-router.route('/').post(createWorkspace).get(getWorkspaces);
+const { protect } = require('../middleware/auth');
 
-router.route('/:id').get(getWorkspace).put(updateWorkspace).delete(deleteWorkspace);
+router.route('/').post(protect, createWorkspace).get(protect, getWorkspaces);
+
+router.route('/:id').get(protect, getWorkspace).put(protect, updateWorkspace).delete(protect, deleteWorkspace);
 
 module.exports = router;
