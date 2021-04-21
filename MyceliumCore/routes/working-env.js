@@ -3,9 +3,9 @@ const { createWorkingEnv, updateWorkingEnv, getWorkingEnv } = require("../contro
 
 const router = express.Router();
 
-const { protect } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth');
 
-router.route('/').post(protect, createWorkingEnv);
+router.route('/').post(protect, authorize('professor', 'admin'), createWorkingEnv);
 
 router.route('/:id').put(protect, updateWorkingEnv).get(protect, getWorkingEnv);
 

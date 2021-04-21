@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['student', 'profesor'],
+        enum: ['student', 'professor'],
         default: 'student'
     },
     password: {

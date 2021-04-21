@@ -27,7 +27,11 @@ const WorkspaceSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Group is required']
     },
-    owner: String,
+    owner: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: true
+    },
     members: [String],
     isStarted: {
         type: Boolean,
