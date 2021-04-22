@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(coockieParser());
 
 // Dev logging middleware
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
