@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet')
 const coockieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
@@ -34,6 +35,9 @@ if(process.env.NODE_ENV === 'development') {
 
 // Sanitize data
 app.use(mongoSanitize());
+
+// Set security headers
+app.use(helmet());
 
 // Mount routers
 app.use('/api/v1/workspaces', workspaces);
