@@ -19,6 +19,7 @@ import { WorkspaceComponent } from './manager/workspace/workspace.component';
 
 import { JwtInterceptor } from './Util/jwt.interceptor';
 import { ErrorInterceptor } from './Util/error.interceptor';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ErrorInterceptor } from './Util/error.interceptor';
     FileManagerComponent,
     UserListComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
