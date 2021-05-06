@@ -9,9 +9,9 @@ import { AuthGuard } from "./Util/auth.guard";
 import { WorkingEnvComponent } from "./working-env/working-env.component";
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/manager', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: '/manager', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'manager', component: ManagerComponent, children: [
+    { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], children: [
         { path: '', component: WelcomeComponent },
         { path: ':id', component: StatisticsComponent, resolve: [ManagerWorkspaceResolverService] }
     ]},

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ManagerComponent } from './manager/manager.component';
-import { WorkingEnvComponent } from './working-env/working-env.component';
-import { WorkspaceComponent } from './manager/workspace/workspace.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { StatisticsComponent } from './manager/statistics/statistics.component';
 
 import { DemoMaterialModule } from './material.module';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { StatisticsComponent } from './manager/statistics/statistics.component';
 import { FileManagerComponent } from './working-env/file-manager/file-manager.component';
 import { UserListComponent } from './working-env/user-list/user-list.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ManagerComponent } from './manager/manager.component';
+import { WorkingEnvComponent } from './working-env/working-env.component';
+import { WorkspaceComponent } from './manager/workspace/workspace.component';
 
 import { JwtInterceptor } from './Util/jwt.interceptor';
 import { ErrorInterceptor } from './Util/error.interceptor';
@@ -39,6 +39,7 @@ import { ErrorInterceptor } from './Util/error.interceptor';
     DemoMaterialModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [
