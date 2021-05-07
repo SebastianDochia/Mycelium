@@ -37,6 +37,8 @@ export class AuthenticationService {
     }
 
     register(user: User) {
-        return this.http.post(`${environment.apiUrl}/auth/register`, user);
+        const userJson = JSON.parse(`{"name": "${user.username}", "email": "${user.email}", "role": "${user.role == true ? "professor" : "student"}", "password": "${user.password}"}`);
+        console.log(userJson);
+        return this.http.post(`${environment.apiUrl}/auth/register`, userJson);
     }
 }

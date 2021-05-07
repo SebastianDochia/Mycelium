@@ -11,7 +11,7 @@
                         <div *ngIf="f.username.errors.required">Username is required</div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <label for="email">Email</label>
                     <input type="text" formControlName="email" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
@@ -19,7 +19,7 @@
                         <div *ngIf="f.username.errors.required">Email is required</div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <label for="password">Password</label>
                     <input type="password" formControlName="password" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
@@ -28,11 +28,11 @@
                         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="checkbox">Role</label>
-                    <input type="checkbox" />
+                <div class="form-group mt-2">
+                    <input type="checkbox" formControlName="role"/>
+                    <label for="role" style="margin-left: 10px;">Professor Account</label>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary">
+                <button [disabled]="loading" class="btn btn-primary mt-2">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Register
                 </button>
