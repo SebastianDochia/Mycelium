@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { WorkingEnvService } from './working-env.service';
+import { HeaderService } from '../Util/header.service';
 
 
 @Component({
@@ -32,11 +33,16 @@ export class WorkingEnvComponent implements OnInit {
     this.editorRef = editor;
   }
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private workingEnvService: WorkingEnvService) { }
+  constructor(
+    private http: HttpClient, 
+    private route: ActivatedRoute, 
+    private workingEnvService: WorkingEnvService,
+    private headerService: HeaderService
+    ) { }
 
   ngOnInit(): void {
     this.linkedWorkspace = this.route.snapshot.fragment;
-    this.http.get(`${this.workingEnvURL}/${this.linkedWorkspace}`).pipe(map((result) => result['data']), tap((data) => console.log(data[0]))).subscribe(result => this.id = result[0]._id);
+    this.http.get(`${this.workingEnvURL}/${this.linkedWorkspace}`, {headers: this.headerService.getHeaders()}).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe(result => this.id = result[0]._id);
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
 
     this.workingEnvService.getCode().subscribe(code => this.code = code);
@@ -45,8 +51,8 @@ export class WorkingEnvComponent implements OnInit {
   onCompile() {
     console.log(`{"code": "${btoa(this.code)}"}`);
 
-    JSON.parse(`{"code": "${btoa(this.code)}"}`)
-    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`)).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
+    JSON.parse(`{"code": "${btoa(this.code)}"}`);
+    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`), {headers: this.headerService.getHeaders()}).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
   }
 
 

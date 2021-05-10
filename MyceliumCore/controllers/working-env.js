@@ -10,7 +10,7 @@ const WorkingEnv = require('../models/WorkingEnv');
 exports.getWorkingEnv = asyncHandler(async (req, res, next) => {
     const workingEnv = await WorkingEnv.find({ linkedWorkspace: req.params.id });
 
-    if (!workspace) {
+    if (!workingEnv) {
         return next(new ErrorResponse(`Working Environment not found with id ${req.params.id}`, 404));
     }
 
