@@ -16,17 +16,22 @@ export class ManagerComponent implements OnInit {
   workspaces: Workspace[];
 
   constructor(
-    private workspaceRequesterService: ManagerWorkspaceRequesterService, 
+    private workspaceRequesterService: ManagerWorkspaceRequesterService,
     private router: Router,
     private authenticationService: AuthenticationService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getWorkspaces();
+    this.getCurrentUser();
   }
 
   getWorkspaces(): void {
     this.workspaceRequesterService.getWorkspaces().subscribe(workspaces => this.workspaces = workspaces);
+  }
+
+  getCurrentUser(): void {
+    this.authenticationService.getCurrentUser().subscribe();
   }
 
   logout(): void {

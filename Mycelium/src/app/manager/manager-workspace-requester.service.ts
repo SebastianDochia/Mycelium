@@ -7,6 +7,7 @@ import { tap, map } from 'rxjs/operators';
 import { Workspace } from "../shared/workspace";
 import { ManagerWorkspaceHandlerService } from "./manager-workspace-handler.service";
 import { HeaderService } from "../Util/header.service";
+import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class ManagerWorkspaceRequesterService {
@@ -25,7 +26,7 @@ export class ManagerWorkspaceRequesterService {
         ) {}
 
     getWorkspaces(): Observable<Workspace[]> {
-        return this.http.get(this.workspaceURL, {headers: this.headerService.getHeaders()}).pipe(
+        return this.http.get(`${environment.apiUrl}/workspaces`, {headers: this.headerService.getHeaders()}).pipe(
             map(result => result['data']), tap(data => {
                 console.log('_ALL WORKSPACES_ Fetch data from server complete');
                 this.workspaceHandlerService.setWorkspaces(data);
@@ -34,9 +35,8 @@ export class ManagerWorkspaceRequesterService {
     }
 
     getWorkspace(id: number): Observable<Workspace> {
-        return this.http.get(`${this.workspaceURL}/${id}`).pipe(
+        return this.http.get(`${environment.apiUrl}/workspaces/${id}`, {headers: this.headerService.getHeaders()}).pipe(
             map(result => result['data']), tap(data => console.log("_WORKSPACE_ Fetch data from server complete "))
         );
     }
-
 }
