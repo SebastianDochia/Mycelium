@@ -20,6 +20,7 @@ import { WorkspaceComponent } from './manager/workspace/workspace.component';
 import { JwtInterceptor } from './Util/jwt.interceptor';
 import { ErrorInterceptor } from './Util/error.interceptor';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SignupComponent } from './auth/signup/signup.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
