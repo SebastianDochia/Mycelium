@@ -6,7 +6,7 @@ import { tap, map } from 'rxjs/operators';
 
 import { Workspace } from "../shared/workspace";
 import { ManagerWorkspaceHandlerService } from "./manager-workspace-handler.service";
-import { CookieService } from "ngx-cookie-service";
+import { HeaderService } from "../Util/header.service";
 
 @Injectable({ providedIn: 'root' })
 export class ManagerWorkspaceRequesterService {
@@ -21,11 +21,11 @@ export class ManagerWorkspaceRequesterService {
     constructor(
         private http: HttpClient, 
         private workspaceHandlerService: ManagerWorkspaceHandlerService,
-        private cookieService: CookieService
+        private headerService: HeaderService
         ) {}
 
     getWorkspaces(): Observable<Workspace[]> {
-        return this.http.get(this.workspaceURL, {headers: {'Authorization': `Bearer ${this.cookieService.get('user')}`}}).pipe(
+        return this.http.get(this.workspaceURL, {headers: this.headerService.getHeaders()}).pipe(
             map(result => result['data']), tap(data => {
                 console.log('_ALL WORKSPACES_ Fetch data from server complete');
                 this.workspaceHandlerService.setWorkspaces(data);
