@@ -1,0 +1,49 @@
+.fieldInput {
+    display: flex;
+    width: 28%;
+    margin: auto;
+    position: relative;
+    margin-top: 20%;
+    padding: 3px;
+    padding-bottom: 10px;
+    justify-content: space-around;
+    background-color: #2A323C;
+}
+
+.fieldInput input {
+    width: 66%;
+}
+
+.fieldInput .buttonOk {
+    width: 10%;
+    background-color: #62CF3A;
+    color: #2A323C;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #62CF3A;
+}
+
+.fieldInput .buttonOk:hover {
+    background-color: #2A323C;
+    color: #62CF3A;
+}
+
+.fieldInput .buttonCancel {
+    width: 20%;
+    background-color: #EF192E;
+    color: #2A323C;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #EF192E;
+}
+
+.fieldInput .buttonCancel:hover {
+    background-color: #2A323C;
+    color: #EF192E;
+}
+
+.fieldInput input:focus {
+    outline: none;
+}

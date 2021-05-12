@@ -12,6 +12,7 @@ import { ManagerWorkspaceRequesterService } from '../manager-workspace-requester
 export class StatisticsComponent implements OnInit {
   workspace: Workspace;
   workspaceName: string;
+  addingParticipantMode: boolean = true;
 
   constructor(private workspaceHandlerService: ManagerWorkspaceHandlerService, private workspaceRequesterService: ManagerWorkspaceRequesterService, private route: ActivatedRoute) { }
 
@@ -33,6 +34,15 @@ export class StatisticsComponent implements OnInit {
       this.workspace = newWorkspace; 
       location.reload();
     });
+  }
+
+  addParticipant() {
+    this.addingParticipantMode = !this.addingParticipantMode;
+  }
+
+  addingModeHandler(mode: boolean) {
+    console.log(mode);
+    this.addingParticipantMode = mode;
   }
 
 }

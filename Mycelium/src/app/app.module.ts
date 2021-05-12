@@ -21,6 +21,7 @@ import { JwtInterceptor } from './Util/jwt.interceptor';
 import { ErrorInterceptor } from './Util/error.interceptor';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FieldInputComponent } from './multi-purpose/field-input/field-input.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CookieService } from 'ngx-cookie-service';
     UserListComponent,
     LoginComponent,
     SignupComponent,
+    FieldInputComponent,
   ],
   imports: [
     BrowserModule,
