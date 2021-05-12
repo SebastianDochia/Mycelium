@@ -1,4 +1,11 @@
 <div>
     <h1>{{ workspace.name }}</h1>
-    <a style="cursor: pointer;" *ngIf="workspace.isStarted" routerLink="/working-env" [fragment]=workspace._id>Launch Mycelium Environment</a>
+    <a style="cursor: pointer;" *ngIf="workspace.isStarted" routerLink="/working-env" [fragment]=workspace._id>
+        Launch Mycelium Environment</a>
+    <p>Members: {{ workspace.members }}</p>
+    <div class="buttonGroup">
+        <button>Add Participants</button>
+        <button *ngIf="!workspace.isStarted" (click)="toggleWorkspaceState()">Start Class</button>
+        <button *ngIf="workspace.isStarted" (click)="toggleWorkspaceState()">End Class</button>
+    </div>
 </div>

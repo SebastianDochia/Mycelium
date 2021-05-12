@@ -34,9 +34,21 @@ export class ManagerWorkspaceRequesterService {
         );
     }
 
-    getWorkspace(id: number): Observable<Workspace> {
+    getWorkspace(id: string): Observable<Workspace> {
         return this.http.get(`${environment.apiUrl}/workspaces/${id}`, {headers: this.headerService.getHeaders()}).pipe(
             map(result => result['data']), tap(data => console.log("_WORKSPACE_ Fetch data from server complete "))
+        );
+    }
+
+    updateWorkspace(id: string, email: string): Observable<Workspace> {
+        return this.http.put(`${environment.apiUrl}/workspaces/${id}`, JSON.parse(`{"members": ${email}}`), {headers: this.headerService.getHeaders()}).pipe(
+            map(result => result['data']), tap(data => console.log("_WORKSPACE_ Workspace updated "))
+        );
+    }
+
+    changeWorkspaceLaunchState(id: string, workspaceState: boolean): Observable<Workspace> {
+        return this.http.put(`${environment.apiUrl}/workspaces/${id}`, JSON.parse(`{"isStarted": ${!workspaceState}}`), {headers: this.headerService.getHeaders()}).pipe(
+            map(result => result['data']), tap(data => console.log("_WORKSPACE_ Workspace updated "))
         );
     }
 }

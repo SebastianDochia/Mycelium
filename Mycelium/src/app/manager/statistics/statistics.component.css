@@ -1,3 +1,7 @@
+.buttonGroup {
+    display: flex;
+}
+
 a {
     background-color: #62CF3A;
     color: #070A0D;
@@ -15,7 +19,22 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+button {
+    border: 0;
+    background-color: #62CF3A;
+    color: #070A0D;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width:15%;
+    padding: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #62CF3A;
+    margin: 10px;
+}
+
+a:hover, button:hover {
     background-color: #070A0D;
     color: #62CF3A;
 }

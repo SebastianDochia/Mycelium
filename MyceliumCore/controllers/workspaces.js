@@ -54,11 +54,19 @@ exports.updateWorkspace = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`User ${req.params.id} not authorized to update workspace`, 401));
     }
 
-    workspace = await Workspace.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false
-    })
+    if (req.body.members == null) {
+        workspace = await Workspace.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+    } else {
+        workspace = await Workspace.findByIdAndUpdate(req.params.id, { $addToSet: {members: req.body.members} }, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+    }
 
     res.status(200).json({ success: true, data: workspace });
 });

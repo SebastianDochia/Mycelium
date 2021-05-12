@@ -34,7 +34,7 @@ export class WorkingEnvComponent implements OnInit {
   }
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private route: ActivatedRoute, 
     private workingEnvService: WorkingEnvService,
     private headerService: HeaderService
