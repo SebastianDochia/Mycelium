@@ -12,7 +12,7 @@ import { ManagerWorkspaceRequesterService } from '../manager-workspace-requester
 export class StatisticsComponent implements OnInit {
   workspace: Workspace;
   workspaceName: string;
-  addingParticipantMode: boolean = true;
+  addingParticipantMode: boolean = false;
 
   constructor(private workspaceHandlerService: ManagerWorkspaceHandlerService, private workspaceRequesterService: ManagerWorkspaceRequesterService, private route: ActivatedRoute) { }
 
@@ -36,13 +36,18 @@ export class StatisticsComponent implements OnInit {
     });
   }
 
-  addParticipant() {
+  addParticipantModeToggle() {
     this.addingParticipantMode = !this.addingParticipantMode;
   }
 
   addingModeHandler(mode: boolean) {
-    console.log(mode);
     this.addingParticipantMode = mode;
+  }
+
+  addParticipantHandler(newParticipant: string) {
+    this.workspaceRequesterService.updateWorkspace(this.workspace._id, newParticipant).subscribe(newWorkspace => {
+      this.workspace = newWorkspace;
+    });
   }
 
 }

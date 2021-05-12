@@ -1,5 +1,5 @@
 <div class="fieldInput">
-    <input type="text">
-    <button class="buttonOk">OK</button>
+    <input #newEntryField (keyup.enter)="addNewEntry(newEntryField.value)" type="text">
+    <button class="buttonOk" (click)="addNewEntry(newEntryField.value)">OK</button>
     <button class="buttonCancel" (click)="cancel()">CANCEL</button>
 </div>

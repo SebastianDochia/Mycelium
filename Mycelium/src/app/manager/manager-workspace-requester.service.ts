@@ -41,7 +41,7 @@ export class ManagerWorkspaceRequesterService {
     }
 
     updateWorkspace(id: string, email: string): Observable<Workspace> {
-        return this.http.put(`${environment.apiUrl}/workspaces/${id}`, JSON.parse(`{"members": ${email}}`), {headers: this.headerService.getHeaders()}).pipe(
+        return this.http.put(`${environment.apiUrl}/workspaces/${id}`, JSON.parse(`{"members": "${email}"}`), {headers: this.headerService.getHeaders()}).pipe(
             map(result => result['data']), tap(data => console.log("_WORKSPACE_ Workspace updated "))
         );
     }

@@ -6,7 +6,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./field-input.component.css']
 })
 export class FieldInputComponent implements OnInit {
-  @Output() addingParticipantModeChanged = new EventEmitter<boolean>();
+  @Output() addingEntryModeChanged = new EventEmitter<boolean>();
+  @Output() newEntryChanged = new EventEmitter<string>();
 
   constructor() { }
 
@@ -14,7 +15,10 @@ export class FieldInputComponent implements OnInit {
   }
 
   cancel() {
-    console.log("cancel");
-    this.addingParticipantModeChanged.emit(false);
+    this.addingEntryModeChanged.emit(false);
+  }
+
+  addNewEntry(newEntry: string) {
+    this.newEntryChanged.emit(newEntry);
   }
 }
