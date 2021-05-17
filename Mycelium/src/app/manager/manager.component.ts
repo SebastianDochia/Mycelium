@@ -38,4 +38,8 @@ export class ManagerComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
+
+  showNewWorkspacePage() {
+    this.router.navigate(['/manager/new-workspace']);
+  }
 }

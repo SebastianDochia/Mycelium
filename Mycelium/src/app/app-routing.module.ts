@@ -4,6 +4,7 @@ import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { ManagerWorkspaceResolverService } from "./manager/manager-workspace-resolver.service";
 import { ManagerComponent } from "./manager/manager.component";
+import { NewWokspaceComponent } from "./manager/new-wokspace/new-wokspace.component";
 import { StatisticsComponent } from "./manager/statistics/statistics.component";
 import { WelcomeComponent } from "./manager/welcome/welcome.component";
 import { AuthGuard } from "./Util/auth.guard";
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'signup', component: SignupComponent},
     { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], children: [
         { path: '', component: WelcomeComponent },
+        { path: 'new-workspace', component: NewWokspaceComponent},
         { path: ':id', component: StatisticsComponent, resolve: [ManagerWorkspaceResolverService] }
     ]},
     { path: 'working-env', component: WorkingEnvComponent },

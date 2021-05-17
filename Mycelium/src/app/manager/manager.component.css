@@ -28,3 +28,22 @@ a {
     text-decoration: none; 
     color: #070A0D;
 }
+
+button {
+    width: 100%;
+    background-color: #2A323C;
+    border: 0;
+    color: #F5F5F5;
+    padding: 10px;
+    margin-bottom: 4px;
+    border-top: 0px;
+    border-bottom: 2px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
+    border-color: #62CF3A;
+}
+
+button:hover {
+    background-color: #070A0D;
+}

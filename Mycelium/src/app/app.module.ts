@@ -22,6 +22,7 @@ import { ErrorInterceptor } from './Util/error.interceptor';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FieldInputComponent } from './multi-purpose/field-input/field-input.component';
+import { NewWokspaceComponent } from './manager/new-wokspace/new-wokspace.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { FieldInputComponent } from './multi-purpose/field-input/field-input.com
     LoginComponent,
     SignupComponent,
     FieldInputComponent,
+    NewWokspaceComponent,
   ],
   imports: [
     BrowserModule,

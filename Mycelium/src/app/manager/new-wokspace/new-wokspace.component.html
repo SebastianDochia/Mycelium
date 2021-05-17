@@ -1,0 +1,53 @@
+<div style="width: 45%;">
+    <div class="card-header">
+        <h3>Create a new workspace</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="newWorkspaceForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <input type="text" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">Description is required</div>
+                </div>
+            </div>
+            <div>
+                <label for="year">Year</label>
+                <input type="text" formControlName="year" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
+                <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+                    <div *ngIf="f.year.errors.required">Year is required</div>
+                </div>
+            </div>
+            <div>
+                <label for="series">Series</label>
+                <input type="text" formControlName="series" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.series.errors }" />
+                <div *ngIf="submitted && f.series.errors" class="invalid-feedback">
+                    <div *ngIf="f.series.errors.required">Series is required</div>
+                </div>
+            </div>
+            <div>
+                <label for="group">Group</label>
+                <input type="text" formControlName="group" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.group.errors }" />
+                <div *ngIf="submitted && f.group.errors" class="invalid-feedback">
+                    <div *ngIf="f.group.errors.required">Group is required</div>
+                </div>
+            </div>
+            <button [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Submit
+            </button>
+        </form>
+    </div>
+</div>
