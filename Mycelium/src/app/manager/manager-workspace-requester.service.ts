@@ -49,10 +49,15 @@ export class ManagerWorkspaceRequesterService {
     }
 
     createWorkspace(name: string, description: string, year: number, series: string, group: number) {
-        console.log("here");
         let workspace = JSON.parse(`{"name":"${name}", "description":"${description}", "year":${year}, "series":"${series}", "group":${group}, "owner": "${this.authService.currentUser.subscribe(user => user.id)}"}`);
         return this.http.post(`${environment.apiUrl}/workspaces`, workspace, { headers: this.headerService.getHeaders() }).pipe(
-            tap(data => console.log("_WORKSPACE_ Workspace created"))
+            map(result => result['data']),
+            tap(data => {
+                console.log("_WORKSPACE_ Workspace created");
+                let currentWorkspaces = this.workspaceHandlerService.getWorkspaces();
+                currentWorkspaces.push(data);
+                this.workspaceHandlerService.setWorkspaces(currentWorkspaces);
+            })
         );
     }
 

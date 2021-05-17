@@ -18,4 +18,8 @@ export class ManagerWorkspaceHandlerService {
     getWorkspace(nameToSearch: string) {
         return this.workspaces.filter((workspace: Workspace) => workspace.name === nameToSearch );
     }
+
+    getWorkspaces() {
+        return this.workspaces;
+    }
 }
