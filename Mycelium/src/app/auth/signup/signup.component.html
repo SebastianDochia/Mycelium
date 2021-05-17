@@ -3,7 +3,7 @@
         <h4 class="card-header">Sign Up</h4>
         <div class="card-body">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
+                <div>
                     <label for="username">Username</label>
                     <input type="text" formControlName="username" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.username.errors }">

@@ -14,8 +14,8 @@
             </div>
             <div>
                 <label for="description">Description</label>
-                <input type="text" formControlName="name" class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                <input type="text" formControlName="description" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
                 <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                     <div *ngIf="f.description.errors.required">Description is required</div>
                 </div>
@@ -44,7 +44,7 @@
                     <div *ngIf="f.group.errors.required">Group is required</div>
                 </div>
             </div>
-            <button [disabled]="loading">
+            <button [disabled]="loading" type="submit">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Submit
             </button>
