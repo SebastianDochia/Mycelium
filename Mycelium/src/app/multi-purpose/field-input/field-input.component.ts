@@ -20,5 +20,6 @@ export class FieldInputComponent implements OnInit {
 
   addNewEntry(newEntry: string) {
     this.newEntryChanged.emit(newEntry);
+    this.addingEntryModeChanged.emit(false);
   }
 }

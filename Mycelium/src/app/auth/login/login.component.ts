@@ -52,10 +52,13 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    location.reload();
                 },
                 error => {
                     this.error = error;
                     this.loading = false;
                 });
+                
+        
     }
 }

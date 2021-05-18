@@ -31,20 +31,22 @@ export class AuthenticationService {
             .pipe(map(user => {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
-                this.cookieService.set('user', user.token);
+                this.cookieService.set('user', user.token, null, '/');
 
                 return user;
             }));
     }
 
     logout() {
-
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        this.currentUser = null;
+        this.cookieService.delete('user');
+        this.cookieService.deleteAll;
     }
 
     register(user: User) {
-        const userJson = JSON.parse(`{"name": "${user.username}", "email": "${user.email}", "role": "${user.role == true ? "professor" : "student"}", "password": "${user.password}"}`);
+        const userJson = JSON.parse(`{"name": "${user.username}", "email": "${user.email}", "role": "student", "password": "${user.password}"}`);
         console.log(userJson);
         return this.http.post(`${environment.apiUrl}/auth/register`, userJson);
     }

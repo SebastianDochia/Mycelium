@@ -6,7 +6,7 @@ const Workspace = require('../models/Workspace');
 // @route   GET /api/v1/workspaces
 // @access  Private
 exports.getWorkspaces = asyncHandler(async (req, res, next) => {
-    const workspaces = await Workspace.find(req.params.id);
+    const workspaces = await Workspace.find({members: {$in: req.user.email}});
 
     res.status(200).json({ success: true, data: workspaces });
 });
@@ -30,6 +30,8 @@ exports.getWorkspace = asyncHandler(async (req, res, next) => {
 exports.createWorkspace = asyncHandler(async (req, res, next) => {
     // Add owner
     req.body.owner = req.user.id;
+    // Add member
+    req.body.members = req.user.email;
 
     const workspace = await Workspace.create(req.body);
 

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { User } from 'src/app/shared/user';
 import { Workspace } from 'src/app/shared/workspace';
+import { AuthenticationService } from 'src/app/Util/authentication.service';
 import { ManagerWorkspaceHandlerService } from '../manager-workspace-handler.service';
 import { ManagerWorkspaceRequesterService } from '../manager-workspace-requester.service';
 
@@ -13,10 +15,18 @@ export class StatisticsComponent implements OnInit {
   workspace: Workspace;
   workspaceName: string;
   addingParticipantMode: boolean = false;
+  user: User;
 
-  constructor(private workspaceHandlerService: ManagerWorkspaceHandlerService, private workspaceRequesterService: ManagerWorkspaceRequesterService, private route: ActivatedRoute) { }
+  constructor(
+    private authService: AuthenticationService, 
+    private workspaceHandlerService: ManagerWorkspaceHandlerService, 
+    private workspaceRequesterService: ManagerWorkspaceRequesterService, 
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.user = this.authService.currentUserValue;
+
     this.route.params.subscribe(
       (params: Params) => {
         this.workspaceName = params['id'];

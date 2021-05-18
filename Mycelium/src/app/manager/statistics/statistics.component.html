@@ -4,9 +4,9 @@
         Launch Mycelium Environment</a>
     <p>Participants: {{ workspace.members }}</p>
     <div class="buttonGroup">
-        <button (click)="addParticipantModeToggle()">Add Participants</button>
-        <button *ngIf="!workspace.isStarted" (click)="toggleWorkspaceState()">Start Class</button>
-        <button *ngIf="workspace.isStarted" (click)="toggleWorkspaceState()">End Class</button>
+        <button *ngIf="(user.role === 'professor')" (click)="addParticipantModeToggle() ">Add Participants</button>
+        <button *ngIf="!workspace.isStarted && (user.role === 'professor')" (click)="toggleWorkspaceState()">Start Class</button>
+        <button *ngIf="workspace.isStarted && (user.role === 'professor')" (click)="toggleWorkspaceState()">End Class</button>
     </div>
     <app-field-input *ngIf="addingParticipantMode" (addingEntryModeChanged) = "addingModeHandler($event)" (newEntryChanged) = "addParticipantHandler($event)"></app-field-input>
 </div>
