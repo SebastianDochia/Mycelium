@@ -42,7 +42,7 @@ export class WorkingEnvComponent implements OnInit {
   ngOnInit(): void {
     this.linkedWorkspace = this.route.snapshot.fragment;
 
-    this.http.get(`${environment.apiUrl}/${this.linkedWorkspace}`, { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe(result => {
+    this.http.get(`${environment.apiUrl}/working-env/${this.linkedWorkspace}`, { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe(result => {
       try {
         this.id = result[0]._id
       } catch (error) {
@@ -60,7 +60,7 @@ export class WorkingEnvComponent implements OnInit {
     console.log(`{"code": "${btoa(this.code)}"}`);
 
     JSON.parse(`{"code": "${btoa(this.code)}"}`);
-    this.http.put(`${environment.apiUrl}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`), { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
+    this.http.put(`${environment.apiUrl}/working-env/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`), { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
   }
 
 
