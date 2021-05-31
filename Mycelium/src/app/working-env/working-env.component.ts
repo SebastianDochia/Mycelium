@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { WorkingEnvService } from './working-env.service';
 import { HeaderService } from '../Util/header.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -16,8 +17,6 @@ import { HeaderService } from '../Util/header.service';
 export class WorkingEnvComponent implements OnInit {
   linkedWorkspace: string;
   id: string;
-
-  private workingEnvURL = 'http://localhost:5000/api/v1/working-env';
 
   output: string = "Awaiting Input";
 
@@ -35,14 +34,23 @@ export class WorkingEnvComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private workingEnvService: WorkingEnvService,
     private headerService: HeaderService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.linkedWorkspace = this.route.snapshot.fragment;
-    this.http.get(`${this.workingEnvURL}/${this.linkedWorkspace}`, {headers: this.headerService.getHeaders()}).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe(result => this.id = result[0]._id);
+
+    this.http.get(`${environment.apiUrl}/${this.linkedWorkspace}`, { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe(result => {
+      try {
+        this.id = result[0]._id
+      } catch (error) {
+        this.http.post
+      }
+
+    });
+
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
 
     this.workingEnvService.getCode().subscribe(code => this.code = code);
@@ -52,7 +60,7 @@ export class WorkingEnvComponent implements OnInit {
     console.log(`{"code": "${btoa(this.code)}"}`);
 
     JSON.parse(`{"code": "${btoa(this.code)}"}`);
-    this.http.put(`${this.workingEnvURL}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`), {headers: this.headerService.getHeaders()}).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
+    this.http.put(`${environment.apiUrl}/${this.id}`, JSON.parse(`{"code": "${btoa(this.code)}"}`), { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap(data => console.log(data))).subscribe(response => this.output = response);
   }
 
 
