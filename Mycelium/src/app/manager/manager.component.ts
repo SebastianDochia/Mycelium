@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../Util/authentication.service';
 import { ManagerWorkspaceHandlerService } from './manager-workspace-handler.service';
 import { ManagerWorkspaceRequesterService } from './manager-workspace-requester.service';
+import { User } from '../shared/user';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { ManagerWorkspaceRequesterService } from './manager-workspace-requester.
 })
 export class ManagerComponent implements OnInit {
   workspaces: Workspace[];
+  user: User;
 
   constructor(
     private workspaceRequesterService: ManagerWorkspaceRequesterService,
@@ -31,7 +33,7 @@ export class ManagerComponent implements OnInit {
   }
 
   getCurrentUser(): void {
-    this.authenticationService.getCurrentUser().subscribe();
+    this.authenticationService.getCurrentUser().subscribe(user => this.user = user);
   }
 
   logout(): void {

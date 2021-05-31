@@ -7,7 +7,7 @@
         <div class="workspaces-list">
             <h1>Workspaces</h1>
             <hr color="primary">
-            <button (click)="showNewWorkspacePage()">Create New</button>
+            <button *ngIf="(user.role === 'professor')" (click)="showNewWorkspacePage()">Create New</button>
             <app-workspace *ngFor="let workspace of workspaces" [workspaceElement]="workspace" [workspaceId]="workspace.id"></app-workspace>
         </div>
         <div class="statistics">

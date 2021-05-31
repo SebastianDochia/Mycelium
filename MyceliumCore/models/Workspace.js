@@ -36,7 +36,8 @@ const WorkspaceSchema = new mongoose.Schema({
     isStarted: {
         type: Boolean,
         default: false
-    }
+    },
+    connectedUsers: [String]
 });
 
 // Create bootcamp slug from name

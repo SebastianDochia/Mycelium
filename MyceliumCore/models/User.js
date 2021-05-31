@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { stringify } = require('querystring');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -27,6 +28,8 @@ const UserSchema = new mongoose.Schema({
         minlength: 6,
         select: false
     },
+    lastOutput: String,
+    lastOutput: String,
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     createdAt: {

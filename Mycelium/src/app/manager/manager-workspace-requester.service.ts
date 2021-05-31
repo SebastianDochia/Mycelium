@@ -12,8 +12,6 @@ import { AuthenticationService } from "../Util/authentication.service";
 
 @Injectable({ providedIn: 'root' })
 export class ManagerWorkspaceRequesterService {
-    private workspaceURL = 'http://localhost:5000/api/v1/workspaces';
-
     workspaces: Workspace[];
 
     httpOptions = {

@@ -6,7 +6,7 @@ const Workspace = require('../models/Workspace');
 // @route   GET /api/v1/workspaces
 // @access  Private
 exports.getWorkspaces = asyncHandler(async (req, res, next) => {
-    const workspaces = await Workspace.find({members: {$in: req.user.email}});
+    const workspaces = await Workspace.find({ members: { $in: req.user.email } });
 
     res.status(200).json({ success: true, data: workspaces });
 });
@@ -56,18 +56,25 @@ exports.updateWorkspace = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`User ${req.params.id} not authorized to update workspace`, 401));
     }
 
-    if (req.body.members == null) {
-        workspace = await Workspace.findByIdAndUpdate(req.params.id, req.body, {
+    if (req.body.connectedUsers != null) {
+        workspace = await Workspace.findByIdAndUpdate(req.params.id, { $addToSet: { connectedUsers: req.body.connectedUsers } }, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+    } else if (req.body.members != null) {
+        workspace = await Workspace.findByIdAndUpdate(req.params.id, { $addToSet: { members: req.body.members } }, {
             new: true,
             runValidators: true,
             useFindAndModify: false
         });
     } else {
-        workspace = await Workspace.findByIdAndUpdate(req.params.id, { $addToSet: {members: req.body.members} }, {
+        workspace = await Workspace.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
             useFindAndModify: false
         });
+
     }
 
     res.status(200).json({ success: true, data: workspace });
