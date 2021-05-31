@@ -46,13 +46,14 @@ export class WorkingEnvComponent implements OnInit {
       try {
         this.id = result[0]._id
       } catch (error) {
-        this.http.post
+        this.http.post(`${environment.apiUrl}/working-env`, JSON.parse(`{"linkedWorkspace": "${this.linkedWorkspace}"}`), { headers: this.headerService.getHeaders() }).pipe(map((result) => result['data']), tap((data) => console.log(data))).subscribe();
+        location.reload();
       }
 
     });
 
     //this.linkedWorkspace.next(this.workingEnv.linkedWorkspace);
-
+    console.log(this.id);
     this.workingEnvService.getCode().subscribe(code => this.code = code);
   }
 
