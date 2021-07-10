@@ -9,7 +9,7 @@ class Compiler {
                     return console.log(err);
                 }
 
-                const className = input.split(' ')[1];
+                const className = input.split(' ').filter(el => el != '')[1];
 
                 exec(`cd tmp & javac tmp.java & java ${className}`, (error, stdout, stderr) => {
                     if (error) {
