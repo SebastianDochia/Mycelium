@@ -18,7 +18,12 @@ export class FileManagerComponent implements OnInit {
         public static void main(String[] args) {
             System.out.println("Hello, World!"); 
         }
-    }`}],
+    }`}, {
+      name: 'SecondHelloWorld', type: 'file', code: `    class HelloWorld {
+      public static void main(String[] args) {
+          System.out.println("Hello, World! From the second file"); 
+      }
+  }`}],
       type: 'folder'
     },
   ];

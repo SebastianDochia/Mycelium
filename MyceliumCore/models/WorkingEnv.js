@@ -6,7 +6,7 @@ const EorkingEnvSchema = new mongoose.Schema({
         required: true
     },
     code: String,
-    output: String
+    output: String,
 });
 
 module.exports = mongoose.model('WorkingEnv', EorkingEnvSchema);
