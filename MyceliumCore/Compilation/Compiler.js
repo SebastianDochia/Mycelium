@@ -8,7 +8,10 @@ class Compiler {
                 if (err) {
                     return console.log(err);
                 }
-                exec(`cd tmp & javac tmp.java & java HelloWorld`, (error, stdout, stderr) => {
+
+                const className = input.split(' ')[1];
+
+                exec(`cd tmp & javac tmp.java & java ${className}`, (error, stdout, stderr) => {
                     if (error) {
                         console.log(`error: ${error.message}`);
                         resolve(error);
