@@ -23,6 +23,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FieldInputComponent } from './multi-purpose/field-input/field-input.component';
 import { NewWokspaceComponent } from './manager/new-wokspace/new-wokspace.component';
+import { UserCardComponent } from './working-env/user-list/user-card/user-card.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NewWokspaceComponent } from './manager/new-wokspace/new-wokspace.compon
     SignupComponent,
     FieldInputComponent,
     NewWokspaceComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,
